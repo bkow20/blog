@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+        <div class='form'>
+            <form action="/create" method="POST">
+                <input type="text" name="title" id="title"><br><br>
+                <input list="category" name="category"><br><br>
+                <datalist id="category">
+                    <option value="Essays">
+                    <option value="Coffee">
+                </datalist>
+                <textarea name="body" id="body" rows="10" cols="30"></textarea><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    
+{% endblock %}

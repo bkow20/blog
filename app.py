@@ -25,7 +25,25 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post %r>' % self.title
 
+@app.route('/create', methods=['POST', 'GET'])
+def create():
+    if request.method == 'POST':
+        post_title = request.form['title']
+        post_body = request.form['body']
+        new_post = Post(title=post_title, body=post_body, category_id=1)
+        try:
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect('/posts')
+        except:
+            'error!'
+    else:
+        return render_template('create.html')
 
+@app.route('/posts')
+def posts():
+    posts = Post.query.order_by(Post.pub_date).all()
+    return render_template('posts.html', posts = posts)
 
 #########
 
